@@ -4,14 +4,15 @@ declare(strict_types=1);
 namespace RedStar\Amounts\Tests;
 
 use PHPUnit\Framework\TestCase;
+use \RedStar\Amounts;
 
 final class UnitManagerTest extends TestCase
 {
     public function testGetUnitByNameForUnknownUnit()
     {
-        $this->expectException(UnknownUnitException::class);
+        $this->expectException(Amounts\UnknownUnitException::class);
 
-        UnitManager::getUnitByName('bla');
+        Amounts\UnitManager::getUnitByName('bla');
     }
 }
 ?>
