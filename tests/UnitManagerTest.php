@@ -1,8 +1,7 @@
 <?php
 declare(strict_types=1);
 
-include '../src/unknownUnitException.php';
-include '../src/unitManager.php';
+namespace RedStar\Amounts\Tests;
 
 use PHPUnit\Framework\TestCase;
 

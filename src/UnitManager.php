@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-include './unknownUnitException.php';
+namespace RedStar\Amounts;
 
 final class UnitManager
 {
