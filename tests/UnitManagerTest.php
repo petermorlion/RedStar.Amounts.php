@@ -20,11 +20,30 @@ final class UnitManagerTest extends TestCase
         $this->assertEquals($unit, $bySymbol);
     }
 
+    // TODO: register without base unit
+
     public function testGetUnitByNameForUnknownUnit()
     {
         $this->expectException(Amounts\UnknownUnitException::class);
 
         Amounts\UnitManager::getUnitByName('bla');
+    }
+
+    public function testTryGetUnitByNameForUnknownUnit()
+    {
+        $unit = Amounts\UnitManager::tryGetUnitByName('bla');
+
+        $this->assertNull($unit);
+    }
+
+    public function testTryGetUnitByNameForKnownUnit()
+    {
+        $unit = new Amounts\Unit("SomeUnit", "SU", new Amounts\UnitType("SomeUnitType"));
+        Amounts\UnitManager::registerUnit($unit);
+
+        $retrievedUnit = Amounts\UnitManager::tryGetUnitByName('SomeUnit');
+
+        $this->assertEquals($unit, $retrievedUnit);
     }
 }
 ?>

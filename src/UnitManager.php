@@ -32,14 +32,24 @@ final class UnitManager
 
     public static function getUnitByName(string $name): Unit
     {
-        // TODO: allow resolving unit at runtime (see .NET implementation with UnitResolve event)
-
-        if (!array_key_exists($name, self::getInstance()->unitsByName))
+        if (is_null(self::tryGetUnitByName($name)))
         {
             throw new UnknownUnitException("No unit found named {$name}.");
         }
 
         return self::getInstance()->unitsByName[$name];
+    }
+
+    public static function tryGetUnitByName(string $name)
+    {
+        // TODO: allow resolving unit at runtime (see .NET implementation with UnitResolve event)
+
+        if (array_key_exists($name, self::getInstance()->unitsByName))
+        {
+            return self::getInstance()->unitsByName[$name];
+        }
+
+        return NULL;
     }
 
     public static function getUnitBySymbol(string $symbol): Unit
